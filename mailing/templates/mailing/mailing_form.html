@@ -1,0 +1,60 @@
+{% extends 'mailing/base.html' %}
+
+{% block content %}
+<div class="col-12">
+    <form class="row" method="post" enctype="multipart/form-data">
+        <div class="col-5">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        {% if object %}
+                        <h3>Edit</h3>
+                        {% else %}
+                        <h3>Create new</h3>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="card-body">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {{ form.is_active.label_tag }}{{ form.is_active }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.subject.label_tag }}{{ form.subject }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.body.label_tag }}{{ form.body }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.status.label_tag }}{{ form.status }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.first_send.label_tag }}{{ form.first_send }}{{ form.first_send.help_text }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.time_end.label_tag }}{{ form.time_end }}{{ form.time_end.help_text }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.frequency.label_tag }}{{ form.frequency }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.day.label_tag }}{{ form.day }}{{ form.day.help_text }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.day_week.label_tag }}{{ form.day_week }}{{ form.day_week.help_text }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.clients.label_tag }}{{ form.clients }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p>
+            <button type="submit" class="btn btn-success">Save</button>
+            <button><a href="{% url 'mailing:mailing_list' %}" class="btn btn-warning">Cancel</a></button>
+        </p>
+    </form>
+</div>
+<br>
+
+{% endblock %}

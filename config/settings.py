@@ -1,5 +1,6 @@
 from pathlib import Path
 
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -17,7 +18,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_crontab',
     'mailing',
+    'blog',
+  #  'users',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +60,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'final_project_6',
         'USER': 'postgres',
-        'PASSWORD': '',
+        'PASSWORD': 'Pirata2021!',
         'HOST': 'localhost',
         'PORT': '5432'
 
@@ -94,3 +98,27 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR/'static']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#AUTH_USER_MODEL = 'users.User'
+
+#LOGIN_REDIRECT_URL = '/'
+#LOGOUT_REDIRECT_URL = '/'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'paula.vartic@gmail.com'
+EMAIL_HOST_PASSWORD = 'xgaw ppsg ihis vcyu'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+#CACHE_ENABLED = True
+#if CACHE_ENABLED:
+ #   CACHES = {
+  #      'default': {
+   #         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+    #        'LOCATION': 'redis://localhost:6379'
+     #   }
+    #}

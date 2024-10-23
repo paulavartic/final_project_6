@@ -1,0 +1,25 @@
+{% extends 'mailing/base.html'%}
+{% block content %}
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="{{ object.preview }}">
+            <div class="card-body">
+              <p class="card-text">{{ object.title }}</p>
+              {{ object.slug }}
+              <p class="card-text">{{ object.body }}</p>
+              Views: {{ object.views_count }}
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a class="btn btn-primary" href="{% url 'blog:list'%}" role="button">Return</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

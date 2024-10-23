@@ -1,0 +1,42 @@
+{% extends 'mailing/base.html' %}
+{% block content %}
+{% load my_tags %}
+
+<title>Log list</title>
+
+<main role="main" class="inner cover">
+    <h2 class="cover-heading">Log list</h2>
+    <br>
+</main>
+
+<div class="table">
+    {% for object in objects_list %}
+    {% manager_groups as manager_group %}
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="card-title">{{ object.timestamp }}</h6>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Mailing:  {{ object.mailing }}</p>
+                {% if object.server_response %}
+                <p class="card-text">Server response:  {{ object.server_response }}</p>
+                {% endif %}
+                {% if user == object.user %}
+                <p class="card-text">Client:  {{ object.client }}</p>
+                {% endif %}
+                <p class="card-text">Author:  {{ object.user }}</p>
+            </div>
+            <div class="card-footer">
+                <div class=" mb-2"> Status:  {{ object.status }}</div>
+                <a class="mb-4"></a>
+
+            </div>
+        </div>
+    </div>
+    <br>
+
+    {% endfor%}
+
+</div>
+{% endblock %}
