@@ -1,37 +1,35 @@
-
-
-<header data-bs-theme="dark">
-
+<div class="collapse text-bg-dark" id="navbarHeader">
     <div class="container">
-        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3  border-bottom">
-            <div class="col-md-3 mb-md-0">
-                <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
-                    <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap">
-                        <use xlink:href="#bootstrap"/>
-                    </svg>
-                </a>
-            </div>
-            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="{% url 'mailing:index' %}" class="nav-link px-2">Home</a></li>
-                <li><a href="{% url 'mailing:mailing_list' %}" class="nav-link px-2">Mailing list</a></li>
-                <li><a href="{% url 'mailing:mailing_log_list' %}" class="nav-link px-2">Mailing log</a></li>
-                <li><a href="{% url 'mailing:client_list' %}" class="nav-link px-2">Clients</a></li>
-                <li><a href="{% url 'blog:list' %}" class="nav-link px-2">Blog</a></li>
-
-            </ul>
-        </header>
+      <div class="row">
+        <div class="col-sm-8 col-md-7 py-4">
+          <h4>Mailing</h4>
+          <p class="text-body-secondary">Create mailings</p>
+        </div>
+        <div class="col-sm-4 offset-md-1 py-4">
+          <h4>Navigate</h4>
+          <ul class="list-unstyled">
+            <li><a href="{% url 'mailing:index' %}" class="text-white">Home</a></li>
+            <li><a href="{% url 'mailing:mailing_list' %}" class="text-white">Mailing List</a></li>
+              <li><a href="{% url 'mailing:client_list' %}" class="text-white">Client List</a></li>
+              <li><a href="{% url 'mailing:mailing_log_list' %}" class="text-white">Mailing Log List</a></li>
+              <li><a href="{% url 'blog:list' %}" class="text-white">Blog</a></li>
+            {% if user.is_authenticated %}
+              <li><a href="{% url 'users:logout' %}" class="text-white">Logout</a></li>
+            {% else %}
+              <li><a href="{% url 'users:login' %}" class="text-white">Login</a></li>
+              <li><a href="{% url 'users:register' %}" class="text-white">Sign in</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
     </div>
-
+  </div>
+  <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container">
-        <header class="d-flex flex-wrap align-items-left justify-content-left  mb-4 border-bottom">
-            <div class="col-md-3 mb-1 ">
-                <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
-                    <svg class="bi" width="40" height="10" role="img" aria-label="Bootstrap">
-                        <use xlink:href="#bootstrap"/>
-                    </svg>
-                </a>
-            </div>
-        </header>
+      <a href="#" class="navbar-brand d-flex align-items-center">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
     </div>
-
-</header>
+  </div>

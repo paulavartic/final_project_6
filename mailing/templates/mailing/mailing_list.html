@@ -1,23 +1,27 @@
 {% extends 'mailing/base.html' %}
 {% block content %}
+{% load my_tags %}
 
 <title>Mailing</title>
 
 <main role="main" class="inner cover">
     <h2 class="cover-heading">Mailing list</h2>
-
+    {% if perms.mailing.add_mailing %}
     <h3 class="card-title"><a class="btn btn-outline-primary" href="{% url 'mailing:mailing_create' %}">New mailing</a>
     </h3>
+    {% endif %}
     <br>
 </main>
 
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
     {% for object in objects_list %}
+    {% manager_groups as manager_group %}
+    {% if user == object.user or user.groups.all.0 == manager_group %}
     <div class="col-4">
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">{{ object.message }}</h3>
-                {% if object.is_active == True %}
+                {% if object.status == running %}
                 <div class=" mb-2"> Active </div>
                 {% else %}
                 <div class=" mb-2"> Inactive </div>
@@ -30,13 +34,18 @@
                 <div class=" mb-2"> Author: {{ object.user }}</div>
                 <a class="mb-4"></a>
                 <a class="btn btn-outline-primary " href="{% url 'mailing:mailing_detail' object.pk %}">Details</a>
+                {% if user == object.user or user.groups.all.0 == manager_group %}
                 <a class="btn btn-outline-primary "
                    href="{% url 'mailing:mailing_edit' object.pk %}">Edit</a>
+                {% endif %}
+                {% if user == object.user %}
                 <a class="btn btn-outline-primary " href="{% url 'mailing:mailing_delete' object.pk %}">Delete</a>
+                {% endif %}
             </div>
         </div>
     </div>
-    <br>
+    {% endif %}
     {% endfor %}
+    <br>
 </div>
 {% endblock %}

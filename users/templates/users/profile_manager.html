@@ -2,28 +2,25 @@
 {% block content %}
 <div class="col-12">
     <form class="row" method="post" enctype="multipart/form-data">
-        <div class="col-6">
+        <div class="col-4"></div>
+        <div class="col-5">
             <div class="card">
                 <div class="card-header">
                     <div class="card-title">
-                        {% if object %}
-                        <h3>Edit client</h3>
-                        {% else %}
-                        <h3>Create client</h3>
-                        {% endif %}
+                        Change {{ user }}'s activity
                     </div>
                 </div>
                 <div class="card-body">
                     {% csrf_token %}
-                    {{ form.as_p }}
+                    {{ form.is_active }} : Activity
+
                 </div>
             </div>
+            <br>
+             <button type="submit" class="btn btn-success">Confirm</button>
+            <button><a href="{% url 'users:users_list' %}" class="btn btn-warning">Cancel</a></button>
         </div>
-        <p>
-            <button type="submit" class="btn btn-success">Save</button>
-            <button><a href="{% url 'mailing:client_list' %}" class="btn btn-warning">Cancel</a></button>
-        </p>
     </form>
 </div>
-<br>
+
 {% endblock %}

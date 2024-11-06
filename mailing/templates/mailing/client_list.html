@@ -1,14 +1,14 @@
 {% extends 'mailing/base.html' %}
 {% block content %}
+{% load my_tags %}
+
 
 <title>Clients</title>
 
 <main role="main" class="inner cover">
     <h2 class="cover-heading">Clients list</h2>
-
     <h3 class="card-title"><a class="btn btn-outline-primary" href="{% url 'mailing:client_create' %}">Create new client</a>
     </h3>
-
     <br>
 </main>
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-2">

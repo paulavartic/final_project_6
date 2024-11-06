@@ -13,7 +13,7 @@ class User(AbstractUser):
     email = models.EmailField(
         verbose_name='Email',
         help_text='Fill in your email address',
-        unique=True,
+        unique=True
     )
     avatar = models.ImageField(
         verbose_name='Avatar',
@@ -47,3 +47,7 @@ class User(AbstractUser):
     class Meta:
         verbose_name = 'User'
         verbose_name_plural = 'Users'
+        permissions = [
+            ('can_block_user', 'Can block users'),
+            ('can_view_users', 'Can view users')
+        ]

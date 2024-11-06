@@ -1,0 +1,25 @@
+{% extends 'mailing/base.html' %}
+{% block content %}
+  <div class="col-12">
+      <form class='row' method="post" enctype="multipart/form-data">
+          <div class="col-4"></div>
+          <div class="col-4">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">
+                  Enter code
+                </h4>
+              </div>
+              <div class="card-body">
+                  {% csrf_token %}
+
+                  <input type="text" name="ver_code" class="form-control" id="ver_code" required>
+              </div>
+              <div class="card-footer">
+                  <button type="submit" class="btn btn-success">Verify</button>
+              </div>
+            </div>
+          </div>
+      </form>
+  </div>
+{% endblock %}

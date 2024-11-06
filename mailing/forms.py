@@ -31,44 +31,41 @@ class MailingForm(StyleFormMixin, forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['clients'].queryset = Client.objects.filter(user=user)
         self.fields['message'].queryset = Message.objects.filter(user=user)
-    # def clean_day(self):
-    #     cleaned_data = self.cleaned_data['day']
-    #
-    #     if 0 > cleaned_data > 31:
-    #         raise forms.ValidationError('Число должно быть от 1 до 31')
-    #
-    #     return cleaned_data
+
+    def clean_day(self):
+        cleaned_data = self.cleaned_data['day']
+        if 0 > cleaned_data > 31:
+            raise forms.ValidationError('Invalid format')
+        return cleaned_data
 
 
-# class MailingUpdateForm(StyleFormMixin, forms.ModelForm):
-#
-#     class Meta:
-#         model = MailingSettings
-#         exclude = ['is_active']
-#
-#     def __init__(self, user, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#         self.fields['clients'].queryset = Client.objects.filter(user=user)
-#         self.fields['user'].disabled = True
-#
-#
-# class MailingManagerUpdateForm(StyleFormMixin, forms.ModelForm):
-#
-#     class Meta:
-#         model = Mailing
-#         exclude = ['clients']
-#
-#     def __init__(self, user, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#         self.fields['name'].disabled = True
-#         self.fields['body'].disabled = True
-#         self.fields['status'].disabled = True
-#         self.fields['time_start'].disabled = True
-#         self.fields['time_end'].disabled = True
-#         self.fields['periodicity'].disabled = True
-#         self.fields['day'].disabled = True
-#         self.fields['day_week'].disabled = True
-#         self.fields['user'].disabled = True
+class MailingUpdateForm(StyleFormMixin, forms.ModelForm):
+
+    class Meta:
+        model = MailingSettings
+        exclude = ['is_active']
+
+    def __init__(self, user, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['clients'].queryset = Client.objects.filter(user=user)
+        self.fields['user'].disabled = True
+
+
+class MailingManagerUpdateForm(StyleFormMixin, forms.ModelForm):
+
+    class Meta:
+        model = MailingSettings
+        exclude = ['clients']
+
+    def __init__(self, user, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['subject'].disabled = True
+        self.fields['body'].disabled = True
+        self.fields['status'].disabled = True
+        self.fields['first_send'].disabled = True
+        self.fields['timestamp'].disabled = True
+        self.fields['frequency'].disabled = True
+        self.fields['user'].disabled = True
 
 
 class ClientForm(StyleFormMixin, forms.ModelForm):

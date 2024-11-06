@@ -27,7 +27,7 @@ class UserCreateView(CreateView):
 
 
 class VerificationView(TemplateView):
-    template_name = 'users/send_email_code.html'
+    template_name = 'users/verification.html'
 
     def post(self, request):
         verification_code = request.POST.get('verification_code')
@@ -38,12 +38,12 @@ class VerificationView(TemplateView):
             user_code.save()
             return redirect('users:login')
         else:
-            return redirect('users:verification_email_error')
+            return redirect('users:verification_error')
 
 
 class ErrorVerification(TemplateView):
-    template_name = 'users/verification_email_error.html'
-    success_url = reverse_lazy('users:send_email_code')
+    template_name = 'users/verification_error.html'
+    success_url = reverse_lazy('users:verification')
 
 
 class UserProfileView(UpdateView):
@@ -58,7 +58,7 @@ class UserProfileView(UpdateView):
 class UserManagerProfileView(UpdateView):
     model = User
     form_class = UserManagerForm
-    template_name = 'users/manager_profile.html'
+    template_name = 'users/profile_manager.html'
     success_url = reverse_lazy('users:users_list')
 
 

@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 
@@ -21,7 +22,7 @@ INSTALLED_APPS = [
     'django_crontab',
     'mailing',
     'blog',
-  #  'users',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -57,8 +58,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'final_project_6',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'project6',
         'USER': 'postgres',
         'PASSWORD': 'Pirata2021!',
         'HOST': 'localhost',
@@ -99,10 +100,14 @@ STATICFILES_DIRS = [BASE_DIR/'static']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#AUTH_USER_MODEL = 'users.User'
+MEDIA_URL = 'media/'
 
-#LOGIN_REDIRECT_URL = '/'
-#LOGOUT_REDIRECT_URL = '/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+AUTH_USER_MODEL = 'users.User'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'

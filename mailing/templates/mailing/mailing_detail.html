@@ -1,6 +1,4 @@
 {% extends 'mailing/base.html' %}
-
-
 {% block content %}
 <br>
 <div class="row">
@@ -21,14 +19,8 @@
                     <p class="mb-2">{{ get_is_active }}</p>
                     <p class="mb-2">Status: {{ object.status }}</p>
                     <p class="mb-2">Started: {{ object.first_send }}</p>
-                    <p class="mb-2">Stopped: {{ object.time_end }}</p>
+                    <p class="mb-2">Stopped: {{ object.timestamp }}</p>
                     <div class=" mb-2"> Frequency: {{ object.get_frequency_display }}</div>
-                    {% if object.get_day_display != None %}
-                    <p class="mb-2">Start every {{ object.get_day_display }} of the month</p>
-                    {% endif %}
-                    {% if object.get_day_week_display != None %}
-                    <p class="mb-2">Start every {{ object.get_day_week_display }}</p>
-                    {% endif %}
                     <div class=" mb-6"> Author: {{ object.user }}</div>
                     <input type="button" onclick="history.back();" value="Back"/>
                 </div>
