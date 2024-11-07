@@ -19,6 +19,7 @@ from django.views.generic import CreateView, ListView, DetailView, UpdateView, D
 from blog.models import Blog
 from mailing.forms import ClientForm, MailingForm, MessageForm, MailingUpdateForm, MailingManagerUpdateForm
 from mailing.models import MailingSettings, SendingAttempt, Client, Message
+from mailing.services import get_mailing_from_cache, get_messages_from_cache
 
 
 #def start_mailing():
@@ -159,6 +160,9 @@ class MailingListView(ListView):
     template_name = 'mailing/mailing_list.html'
     context_object_name = 'object_list'
 
+    def get_queryset(self):
+        return get_mailing_from_cache()
+
 
 class MailingDetailView(DetailView):
     model = MailingSettings
@@ -214,6 +218,9 @@ class MessageCreateView(CreateView):
 class MessageDetailView(DetailView):
     model = Message
     template_name = 'mailing/message_detail.html'
+
+    def get_queryset(self):
+        return get_messages_from_cache()
 
 
 class MessageUpdateView(UpdateView):
