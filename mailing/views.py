@@ -22,9 +22,6 @@ from mailing.models import MailingSettings, SendingAttempt, Client, Message
 from mailing.services import get_mailing_from_cache, get_messages_from_cache
 
 
-#def start_mailing():
-#   return call_command('start_mailing')
-
 @login_required
 def send_mailing(request):
     zone = pytz.timezone(settings.TIME_ZONE)

@@ -1,6 +1,5 @@
 from django import forms
 from mailing.models import MailingSettings, Client, Message
-import datetime
 
 
 class StyleFormMixin:
