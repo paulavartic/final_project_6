@@ -1,4 +1,5 @@
 import random
+from time import sleep
 
 import pytz
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -61,10 +62,9 @@ def send_mailing(request):
         mailing.save()
 
 
-# scheduler = BackgroundScheduler()
-# scheduler.add_job(send_mailing, 'interval', seconds=600)
-# #scheduler.add_job(mail_status_chenge, 'interval', seconds=3600)
-# scheduler.start()
+scheduler = BackgroundScheduler()
+scheduler.add_job(send_mailing, 'interval', seconds=600)
+scheduler.start()
 
 
 class IndexListView(ListView):
